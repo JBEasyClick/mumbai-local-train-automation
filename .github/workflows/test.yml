@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test automation
+      - name: Test internet connectivity
         run: |
-          echo "🚆 Mumbai Local Train Automation is running!"
-          echo "⏰ GitHub Actions is working successfully."
-          date
+          echo "🚆 Mumbai Local Train Automation"
+          echo "================================"
+          echo "✅ GitHub Actions runner is working"
+          echo "🌐 Testing internet connectivity..."
+          curl -I --max-time 10 https://www.google.com
+          echo "✅ Internet connectivity is working"
+          echo "🕒 Current UTC time:"
+          date -u
