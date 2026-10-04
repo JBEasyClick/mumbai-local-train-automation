@@ -10,13 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test internet connectivity
+      - name: Test Western Railway
         run: |
           echo "🚆 Mumbai Local Train Automation"
           echo "================================"
-          echo "✅ GitHub Actions runner is working"
-          echo "🌐 Testing internet connectivity..."
-          curl -I --max-time 10 https://www.google.com
-          echo "✅ Internet connectivity is working"
+          echo "🌐 Testing Western Railway website..."
+
+          HTTP_STATUS=$(curl -L -s -o /tmp/wr.html -w "%{http_code}" --max-time 20 https://wr.indianrailways.gov.in/)
+
+          echo "Western Railway HTTP Status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ Western Railway website is reachable"
+            echo "📄 Response received successfully"
+            echo "📏 Response size:"
+            wc -c /tmp/wr.html
+          else
+            echo "❌ Western Railway website returned HTTP $HTTP_STATUS"
+            exit 1
+          fi
+
           echo "🕒 Current UTC time:"
           date -u
