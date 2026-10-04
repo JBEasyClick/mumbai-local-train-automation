@@ -10,35 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Diagnose Western Railway
+      - name: Test Central Railway
         run: |
           echo "🚆 Mumbai Local Train Automation"
           echo "================================"
 
           echo ""
           echo "1️⃣ DNS lookup"
-          getent hosts wr.indianrailways.gov.in || true
+          getent hosts cr.indianrailways.gov.in || true
 
           echo ""
           echo "2️⃣ HTTPS test"
           curl -I -L \
             --connect-timeout 10 \
             --max-time 20 \
-            https://wr.indianrailways.gov.in/ || true
+            https://cr.indianrailways.gov.in/ || true
 
           echo ""
           echo "3️⃣ HTTP test"
           curl -I -L \
             --connect-timeout 10 \
             --max-time 20 \
-            http://wr.indianrailways.gov.in/ || true
-
-          echo ""
-          echo "4️⃣ Test general internet"
-          curl -I \
-            --connect-timeout 10 \
-            --max-time 20 \
-            https://www.google.com
+            http://cr.indianrailways.gov.in/ || true
 
           echo ""
           echo "🕒 Current UTC time"
