@@ -1,0 +1,17 @@
+name: Mumbai Local Automation Test
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test automation
+        run: |
+          echo "🚆 Mumbai Local Train Automation is running!"
+          echo "⏰ GitHub Actions is working successfully."
+          date
